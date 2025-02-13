@@ -1,11 +1,9 @@
 {
   "name": "@zxiaosi/cli",
-  "description": "Qiankun Template",
   "version": "1.0.2",
-  "keywords": [
-    "qiankun"
-  ],
-  "author": "",
+  "description": "cli tool for qiankun",
+  "author": "zxiaosi",
+  "license": "MIT",
   "main": "index.js",
   "types": "/dist/index.d.ts",
   "files": [
@@ -14,25 +12,32 @@
     "templates",
     "index.js"
   ],
-  "scripts": {
-    "clean": "rimraf ./node_modules",
-    "dev": "tsc -w",
-    "build": "rimraf ./dist && tsc",
-    "preview": "node ./index.js"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxiaosi/node-cli.git"
   },
   "bin": {
     "zxiaosi": "./index.js"
   },
-  "license": "MIT",
+  "keywords": [
+    "qiankun"
+  ],
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "figlet": "^1.8.0"
+    "figlet": "^1.8.0",
+    "picocolors": "^1.1.1"
   },
   "devDependencies": {
     "@types/figlet": "^1.7.0",
     "@types/node": "^22.13.2",
     "typescript": "^5.7.3"
+  },
+  "scripts": {
+    "clean": "rimraf ./node_modules",
+    "dev": "tsc -w",
+    "build": "rimraf ./dist && tsc",
+    "preview": "node ./index.js"
   }
 }

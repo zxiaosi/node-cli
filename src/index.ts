@@ -1,4 +1,5 @@
 import figlet from 'figlet';
+import pc from 'picocolors';
 
 export default class CLI {
   appPath: string;
@@ -9,6 +10,6 @@ export default class CLI {
 
   run() {
     const figletText = figlet.textSync('zxiaosi', { horizontalLayout: 'full' });
-    console.log(figletText);
+    console.log(pc.green(figletText));
   }
 }
