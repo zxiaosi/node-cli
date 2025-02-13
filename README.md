@@ -2,8 +2,8 @@
 
 ```shell
 # 全局安装依赖
-npm install create-qiankun-template -g
+npm install @zxiaosi/cli -g
 
 # 使用模板
-create-qiankun-template
+zxiaosi
 ```

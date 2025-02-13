@@ -1,31 +1,38 @@
 {
-  "name": "create-qiankun-template",
+  "name": "@zxiaosi/cli",
   "description": "Qiankun Template",
-  "keywords": [],
-  "version": "1.0.0",
+  "version": "1.0.2",
+  "keywords": [
+    "qiankun"
+  ],
+  "author": "",
   "main": "index.js",
-  "type": "module",
+  "types": "/dist/index.d.ts",
   "files": [
-    "index.js",
-    "plopfile.cjs",
-    "templates"
+    "src",
+    "dist",
+    "templates",
+    "index.js"
   ],
   "scripts": {
     "clean": "rimraf ./node_modules",
-    "start": "plop"
+    "dev": "tsc -w",
+    "build": "rimraf ./dist && tsc",
+    "preview": "node ./index.js"
   },
   "bin": {
-    "create-qiankun-template": "./index.js"
+    "zxiaosi": "./index.js"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zxiaosi/node-cli.git"
-  },
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "figlet": "^1.8.0"
+  },
   "devDependencies": {
-    "plop": "^4.0.1"
+    "@types/figlet": "^1.7.0",
+    "@types/node": "^22.13.2",
+    "typescript": "^5.7.3"
   }
 }
