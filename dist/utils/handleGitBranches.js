@@ -35,27 +35,56 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("./core");
-/** Node CLI */
-var CLI = /** @class */ (function () {
-    function CLI(appPath) {
-        this.appPath = appPath || process.cwd();
-        (0, core_1.registerException)();
-        (0, core_1.registerFiglet)();
-    }
-    CLI.prototype.run = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, core_1.registerPrompts)()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
+exports.default = default_1;
+var axios_1 = __importDefault(require("axios"));
+var ora_1 = __importDefault(require("ora"));
+var gethubApi = 'https://api.github.com/repos/zxiaosi/lerna-project/branches';
+var giteeApi = 'https://gitee.com/api/v5/repos/zxiaosi/lerna-project/branches';
+var spinner = (0, ora_1.default)('正在获取远程模板...');
+/** 处理接口返回数据 */
+var handleData = function (origin, data) {
+    var _a;
+    spinner.stop();
+    var branches = (_a = data === null || data === void 0 ? void 0 : data.map(function (item) { return ({ name: item.name, value: item.name }); })) === null || _a === void 0 ? void 0 : _a.filter(function (item) { return item.name !== 'master'; });
+    return { origin: origin, branches: branches };
+};
+/**
+ * 获取远程仓库的所有分支名
+ */
+function default_1() {
+    return __awaiter(this, void 0, void 0, function () {
+        var resp, err_1, resp, err_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    spinner.start();
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 8]);
+                    return [4 /*yield*/, axios_1.default.get(gethubApi)];
+                case 2:
+                    resp = _a.sent();
+                    return [2 /*return*/, handleData('github', resp.data)];
+                case 3:
+                    err_1 = _a.sent();
+                    _a.label = 4;
+                case 4:
+                    _a.trys.push([4, 6, , 7]);
+                    return [4 /*yield*/, axios_1.default.get(giteeApi)];
+                case 5:
+                    resp = _a.sent();
+                    return [2 /*return*/, handleData('gitee', resp.data)];
+                case 6:
+                    err_2 = _a.sent();
+                    spinner.fail('获取远程模板失败！');
+                    throw new Error('Get remote template failed!');
+                case 7: return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
+            }
         });
-    };
-    return CLI;
-}());
-exports.default = CLI;
+    });
+}

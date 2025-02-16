@@ -1,15 +1,17 @@
-import figlet from 'figlet';
-import pc from 'picocolors';
+import { registerFiglet, registerException, registerPrompts } from './core';
 
+/** Node CLI */
 export default class CLI {
   appPath: string;
 
   constructor(appPath: any) {
     this.appPath = appPath || process.cwd();
+
+    registerException();
+    registerFiglet();
   }
 
-  run() {
-    const figletText = figlet.textSync('zxiaosi', { horizontalLayout: 'full' });
-    console.log(pc.green(figletText));
+  async run() {
+    await registerPrompts();
   }
 }
