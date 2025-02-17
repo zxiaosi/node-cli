@@ -1,6 +1,6 @@
 {
   "name": "@zxiaosi/cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "cli tool for qiankun",
   "author": "zxiaosi",
   "license": "MIT",
@@ -30,23 +30,21 @@
     "axios": "^1.7.9",
     "chokidar": "^4.0.3",
     "figlet": "^1.8.0",
-    "fs-extra": "^11.3.0",
     "ora": "^5.4.1",
     "picocolors": "^1.1.1",
     "simple-git": "^3.27.0"
   },
   "devDependencies": {
-    "@types/adm-zip": "^0.5.7",
     "@types/figlet": "^1.7.0",
-    "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.13.2",
+    "cross-env": "^7.0.3",
     "typescript": "^5.7.3"
   },
   "scripts": {
     "clean": "rimraf ./node_modules",
     "dev": "tsc -w",
-    "build": "rimraf ./dist && tsc",
-    "preview": "node ./index.js",
-    "publish": "npm run build && npm publish"
+    "build": "rimraf ./dist && cross-env NODE_ENV=production tsc",
+    "preview": "cross-env NODE_ENV=development node ./index.js",
+    "preview:build": "cross-env NODE_ENV=production node ./index.js"
   }
 }

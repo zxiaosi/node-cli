@@ -49,7 +49,7 @@ var modeItems = [
     { name: '远程模板(Github)', value: 'github' },
     { name: '远程模板(Gitee)', value: 'gitee' },
 ];
-var outputPath = path_1.default.join(process.cwd(), 'output');
+var outputPath = path_1.default.join(process.cwd(), process.env.NODE_ENV === 'development' ? 'output' : '');
 /**
  * 命令交互逻辑
  */

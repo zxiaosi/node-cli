@@ -15,7 +15,10 @@ const modeItems = [
   { name: '远程模板(Gitee)', value: 'gitee' },
 ];
 
-const outputPath = path.join(process.cwd(), 'output');
+const outputPath = path.join(
+  process.cwd(),
+  process.env.NODE_ENV === 'development' ? 'output' : ''
+);
 
 /**
  * 命令交互逻辑
